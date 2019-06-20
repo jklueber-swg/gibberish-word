@@ -2,6 +2,7 @@ package com.jklueber.pronounceablegibberish.controllers;
 
 import com.jklueber.pronounceablegibberish.model.DebugResponse;
 import com.jklueber.pronounceablegibberish.model.GibberishResponse;
+import com.jklueber.pronounceablegibberish.model.ManyGibberish;
 import com.jklueber.pronounceablegibberish.util.RandomDictionary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,16 @@ public class Endpoint {
         resp.setGibberish(dict.makeRandomGibberishWord(len));
         return resp;
     }
+
+    @GetMapping("/length/{len}/count/{count}")
+    public ManyGibberish getGibberishList(@PathVariable int len, @PathVariable int count) {
+        ManyGibberish resp = new ManyGibberish();
+        for (int i = 0; i < count; i++) {
+            resp.getGibberishList().add(dict.makeRandomGibberishWord(len));
+        }
+        return resp;
+    }
+
 
     @GetMapping()
     public GibberishResponse getGibberishDefault() {
