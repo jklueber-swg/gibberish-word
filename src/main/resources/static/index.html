@@ -1,0 +1,84 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gibberish Word Generator</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        div {
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+    function go() {
+        var length = $("#length").val();
+        var count = $("#count").val();
+        var urlbase = "/api";
+        var url = urlbase + "/length/" + length + "/count/" + count;
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (result) {
+                buildList(result)
+            },
+            error: function () {
+                console.log("Huh??");
+            }
+        });
+    }
+
+    function buildList(data) {
+        var list = data.gibberishList;
+        var out = "";
+        for (var i = 0; i < list.length; i++) {
+            out += list[i] + "\n";
+        }
+        $("#outputarea").val(out);
+    }
+</script>
+
+<div class="container-fluid">  <!-- Main content -->
+    <div class="jumbotron">
+        <h1 class="display-4" style="text-align: center;">Gibberish Word Generator</h1>
+        <hr class="my-4">
+    </div>
+    <div class="row"> <!-- Configuration -->
+        <div class="col-">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="length-label">Word Length</span>
+                </div>
+                <input id="length" type="text" class="form-control" placeholder="8" aria-label="Length" aria-describedby="length-label" value="8">
+            </div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="count-label">Count</span>
+                </div>
+                <input id="count" type="text" class="form-control" placeholder="5" aria-label="Count" aria-describedby="count-label" value="5">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="go()">Go!</button>
+        </div>
+    </div> <!-- /Configuration -->
+    <div class="row"> <!-- Output -->
+        <div class="col-">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Output</span>
+                </div>
+                <textarea id="outputarea" class="form-control" aria-label="Output" rows="10" cols="50"></textarea>
+            </div>
+        </div>
+    </div> <!-- /Output -->
+</div> <!-- /Main Content -->
+
+<!-- SCRIPTS BELOW --->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api")
 public class Endpoint {
     @Autowired
     RandomDictionary dict;
@@ -49,7 +49,7 @@ public class Endpoint {
     @GetMapping("/getInfo")
     public DebugResponse getInfo() {
         DebugResponse debug = new DebugResponse();
-        StringBuffer info = new StringBuffer();
+        StringBuilder info = new StringBuilder();
         dict.initialize();
 
         info.append("Vowels: ").append(dict.getVowels().size()).append(" | ");
