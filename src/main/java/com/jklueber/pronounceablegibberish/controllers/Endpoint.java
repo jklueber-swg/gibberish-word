@@ -31,6 +31,7 @@ public class Endpoint {
     public DebugResponse getInfo() {
         DebugResponse debug = new DebugResponse();
         StringBuffer info = new StringBuffer();
+        dict.initialize();
 
         info.append("Vowels: ").append(dict.getVowels().size()).append(" | ");
         info.append("Consonants: ").append(dict.getConsonants().size()).append(" | ");

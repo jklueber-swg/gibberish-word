@@ -20,7 +20,7 @@ public class RandomDictionary {
     @Autowired
     FileLoader files;
 
-    private void initialize() {
+    public void initialize() {
         if (!initialized) {
             vowels = files.getStringsFromFile("vowels.txt");
             consonants = files.getStringsFromFile("consonants.txt");
