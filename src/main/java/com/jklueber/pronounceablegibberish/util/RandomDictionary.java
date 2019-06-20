@@ -1,5 +1,6 @@
 package com.jklueber.pronounceablegibberish.util;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 @Component
+@Data
 public class RandomDictionary {
     private List<String> vowels;
     private List<String> consonants;
