@@ -59,6 +59,14 @@ public class RandomDictionary {
         initialize();
         String candidate = null;
 
+        if (minLen < 0) {
+            minLen = 5;
+        }
+
+        if (minLen > 50) {
+            minLen = 50;
+        }
+
         while(candidate == null || words.contains(candidate)) {
             candidate = makeRandomWord(minLen);
         }

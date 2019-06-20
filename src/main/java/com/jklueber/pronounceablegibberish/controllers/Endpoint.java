@@ -25,6 +25,14 @@ public class Endpoint {
 
     @GetMapping("/length/{len}/count/{count}")
     public ManyGibberish getGibberishList(@PathVariable int len, @PathVariable int count) {
+        if (count > 50) {
+            count = 50;
+        }
+
+        if (count < 0) {
+            count = 1;
+        }
+
         ManyGibberish resp = new ManyGibberish();
         for (int i = 0; i < count; i++) {
             resp.getGibberishList().add(dict.makeRandomGibberishWord(len));
