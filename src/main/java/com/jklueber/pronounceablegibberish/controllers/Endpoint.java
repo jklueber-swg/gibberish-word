@@ -27,14 +27,14 @@ public class Endpoint {
         return getGibberish(8);
     }
 
-    @GetMapping("/debug")
-    public DebugResponse getDebug() {
+    @GetMapping("/getInfo")
+    public DebugResponse getInfo() {
         DebugResponse debug = new DebugResponse();
         StringBuffer info = new StringBuffer();
 
-        info.append("Vowels: ").append(dict.getVowels().size()).append("\n");
-        info.append("Consonants: ").append(dict.getConsonants().size()).append("\n");
-        info.append("Words: ").append(dict.getWords().size()).append("\n");
+        info.append("Vowels: ").append(dict.getVowels().size()).append(" | ");
+        info.append("Consonants: ").append(dict.getConsonants().size()).append(" | ");
+        info.append("Words: ").append(dict.getWords().size()).append(" | ");
 
         debug.setDebugInfo(info.toString());
         return debug;
